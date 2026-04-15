@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACHITECH - Buy Air Conditioners at Best Quality & Price</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --blue: #1565C0; --blue-dark: #0D47A1; --accent: #00BCD4;
+    --gray-light: #f5f7fa; --gray: #666; --text: #222;
+  }
+  body { font-family: 'Poppins', sans-serif; color: var(--text); overflow-x: hidden; }
+
+  /* NAVBAR */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(255,255,255,0.97); box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 70px;
+  }
+  .logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+  .logo-text { font-size: 20px; font-weight: 700; color: var(--blue); }
+  .logo-text span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue); color: white; padding: 10px 22px;
+    border-radius: 25px; text-decoration: none; font-size: 14px; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--blue-dark); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+
+  /* HERO SLIDER */
+  .hero { margin-top: 70px; position: relative; overflow: hidden; height: calc(100vh - 70px); min-height: 480px; }
+  .slides { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(.77,0,.18,1); }
+  .slide { min-width: 100%; height: 100%; position: relative; flex-shrink: 0; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slide-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(13,71,161,0.82) 0%, rgba(13,71,161,0.38) 60%, rgba(0,0,0,0.1) 100%);
+    display: flex; align-items: center; padding: 0 8%;
+  }
+  .slide-content { color: white; max-width: 600px; }
+  .slide-badge {
+    display: inline-block; background: rgba(255,255,255,0.18); color: white;
+    padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 500;
+    margin-bottom: 1.2rem; border: 1px solid rgba(255,255,255,0.25);
+  }
+  .slide-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .slide-content p { font-size: 1rem; color: rgba(255,255,255,0.88); margin-bottom: 2rem; line-height: 1.7; max-width: 480px; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-white {
+    background: white; color: var(--blue-dark); padding: 13px 30px; border-radius: 30px;
+    text-decoration: none; font-weight: 700; font-size: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18); transition: transform 0.2s; display: inline-block;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+  .btn-border {
+    border: 2px solid rgba(255,255,255,0.75); color: white; padding: 12px 28px;
+    border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 15px;
+    transition: background 0.2s; display: inline-block;
+  }
+  .btn-border:hover { background: rgba(255,255,255,0.12); }
+  .btn-blue {
+    background: var(--blue); color: white; padding: 13px 30px; border-radius: 30px;
+    text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-blue:hover { background: var(--blue-dark); }
+  .slider-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.4);
+    color: white; width: 48px; height: 48px; border-radius: 50%;
+    font-size: 1.4rem; cursor: pointer; z-index: 10;
+    display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+  }
+  .slider-arrow:hover { background: rgba(255,255,255,0.36); }
+  .slider-arrow.prev { left: 20px; }
+  .slider-arrow.next { right: 20px; }
+  .slider-dots { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.2s; }
+  .dot.active { background: white; transform: scale(1.3); }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; }
+  .section-label { text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--blue); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
+  .section-sub { text-align: center; color: var(--gray); max-width: 600px; margin: 0 auto 3.5rem; line-height: 1.7; font-size: 15px; }
+
+  /* PRODUCTS */
+  .products { background: var(--gray-light); }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+  .product-card {
+    background: white; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product-card:hover { transform: translateY(-8px); box-shadow: 0 14px 40px rgba(0,0,0,0.13); }
+  .product-img { height: 210px; overflow: hidden; position: relative; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .product-card:hover .product-img img { transform: scale(1.06); }
+  .product-tag { position: absolute; top: 12px; right: 12px; background: var(--blue); color: white; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 10px; }
+  .product-body { padding: 1.5rem; }
+  .product-body h3 { font-size: 17px; font-weight: 600; margin-bottom: 0.5rem; }
+  .product-body p { color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 1rem; }
+  .product-link { color: var(--blue); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+  .product-link:hover { gap: 8px; }
+
+  /* ABOUT */
+  .about { background: white; }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .about-img-wrap img { width: 100%; border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.13); display: block; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+  .stat-box { background: var(--gray-light); border-radius: 12px; padding: 1rem; text-align: center; }
+  .stat-number { font-size: 1.7rem; font-weight: 800; color: var(--blue); }
+  .stat-label { font-size: 12px; color: var(--gray); font-weight: 500; }
+  .about-text .section-title, .about-text .section-label { text-align: left; }
+  .about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 1.1rem; font-size: 15px; }
+
+  /* SERVICES */
+  .services { background: var(--gray-light); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+  .service-card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.1); }
+  .service-img { height: 185px; overflow: hidden; }
+  .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .service-card:hover .service-img img { transform: scale(1.06); }
+  .service-body { padding: 1.4rem; }
+  .service-body h3 { font-size: 16px; font-weight: 600; margin-bottom: 0.5rem; }
+  .service-body p { color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 0.8rem; }
+  .service-body a { color: var(--blue); font-size: 13px; font-weight: 600; text-decoration: none; }
+
+  /* QUOTE STRIP */
+  .quote-strip { background: white; padding: 50px 5%; text-align: center; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+  .quote-strip blockquote { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--gray); font-style: italic; max-width: 800px; margin: 0 auto 2rem; line-height: 1.8; }
+  .quote-strip blockquote strong { color: var(--text); font-style: normal; }
+
+  /* COMMITMENT */
+  .commitment { background: var(--gray-light); }
+  .commitment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; max-width: 1000px; margin: 0 auto; }
+  .commit-item { text-align: center; padding: 2rem 1.5rem; background: white; border-radius: 18px; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+  .commit-icon-wrap { width: 80px; height: 80px; margin: 0 auto 1.2rem; border-radius: 50%; overflow: hidden; background: var(--gray-light); display: flex; align-items: center; justify-content: center; }
+  .commit-icon-wrap img { width: 60px; height: 60px; object-fit: contain; }
+  .commit-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 0.6rem; }
+  .commit-item p { color: var(--gray); font-size: 14px; line-height: 1.7; }
+
+  /* CTA */
+  /* CONTACT SECTION */
+  .contact-section { background: #f5f7fa; padding: 80px 5%; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; }
+  .contact-card { background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+  .contact-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.8rem; color: #111; position: relative; padding-bottom: 0.8rem; }
+  .contact-card h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: #1565C0; border-radius: 2px; }
+  .contact-info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 1.6rem; }
+  .contact-icon { width: 48px; height: 48px; border-radius: 12px; background: #EEF4FF; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .contact-info-label { font-size: 12px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .contact-info-val { font-size: 15px; color: #111; font-weight: 600; text-decoration: none; }
+  .contact-info-val:hover { color: #1565C0; }
+  .contact-info-addr { font-size: 14px; color: #444; line-height: 1.7; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; padding: 12px 16px; border: 1.5px solid #e5e7eb; border-radius: 10px;
+    font-family: 'Poppins', sans-serif; font-size: 14px; color: #111;
+    margin-bottom: 1rem; outline: none; transition: border 0.2s;
+    background: #fafafa;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: #1565C0; background: white; }
+  .contact-form textarea { height: 110px; resize: none; }
+  .contact-form button {
+    width: 100%; background: #1565C0; color: white; border: none;
+    padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 700;
+    cursor: pointer; font-family: 'Poppins', sans-serif; transition: background 0.2s;
+  }
+  .contact-form button:hover { background: #0D47A1; }
+  .map-wrap { border-radius: 14px; overflow: hidden; margin-top: 1.5rem; height: 180px; }
+  .map-wrap iframe { width: 100%; height: 100%; border: 0; }
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  /* FOOTER */
+  footer { background: #0D1B2A; color: rgba(255,255,255,0.7); padding: 50px 5% 30px; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 2rem; }
+  .footer-logo-img { height: 44px; width: 44px; border-radius: 10px; object-fit: cover; }
+  .footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 1rem; }
+  .footer-col h4 { color: white; font-size: 15px; font-weight: 600; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; }
+  .footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; font-size: 13px; color: rgba(255,255,255,0.4); max-width: 1100px; margin: 0 auto; }
+
+  /* WHATSAPP */
+  .wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: transform 0.2s; }
+  .wa-btn:hover { transform: scale(1.1); }
+  .wa-btn img { width: 32px; height: 32px; object-fit: contain; }
+
+  @media (max-width: 900px) {
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WhatsApp -->
+<a href="https://api.whatsapp.com/send?phone=919449148548&text=Hello this is the starting message" class="wa-btn" target="_blank">
+  <img src="https://www.climatetech.in/images/whatsapp_PNG.png" alt="WhatsApp" onerror="this.outerHTML='<span style=\'font-size:1.7rem;\'>💬</span>'">
+</a>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#home" class="logo">
+<svg width="160" height="46" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="3" width="40" height="40" rx="9" fill="#111"/>
+  <text x="20" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="white">A</text>
+  <text x="50" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="#111" letter-spacing="2.5">ACHI</text>
+  <line x1="50" y1="25" x2="156" y2="25" stroke="#ddd" stroke-width="0.8"/>
+  <text x="50" y="38" font-family="Arial,sans-serif" font-size="11" font-weight="400" fill="#888" letter-spacing="4">TECH</text>
+</svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+  <a href="tel:+919449148548" class="nav-cta">📞 Call Now</a>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero" id="home">
+  <div class="slides" id="slides">
+    <div class="slide">
+      <img src="https://www.climatetech.in/images/slider1.jpg" alt="ACHITECH AC"
+           onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80'">
+      <div class="slide-overlay">
+        <div class="slide-content">
+          <div class="slide-badge">✦ Your Comfort, Our Priority</div>
+          <h1>Buy Air Conditioners at Best Quality & Price</h1>
+          <p>Welcome to ACHITECH — Your One-Stop Solution for all Air Conditioning Needs.</p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn-white">Get a Free Quote</a>
+            <a href="#products" class="btn-border">Explore Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://www.climatetech.in/images/slider_small.jpg" alt="ACHITECH"
+           onerror="this.src='https://images.unsplash.com/photo-1631545806609-e9da4949cf2c?w=1400&q=80'">
+      <div class="slide-overlay">
+        <div class="slide-content">
+          <div class="slide-badge">✦ Premium Brands</div>
+          <h1>Trusted by 500+ Happy Customers</h1>
+          <p>Expert installation, reliable service, and top-brand products — all under one roof.</p>
+          <div class="hero-btns">
+            <a href="#products" class="btn-white">View Products</a>
+            <a href="#about" class="btn-border">About Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="slider-arrow prev" onclick="changeSlide(-1)">&#8249;</button>
+  <button class="slider-arrow next" onclick="changeSlide(1)">&#8250;</button>
+  <div class="slider-dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-label">PRODUCTS</div>
+  <h2 class="section-title">Our AC Range</h2>
+  <p class="section-sub">From residential comfort to commercial-scale cooling, we have the perfect solution for every need.</p>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://www.climatetech.in/images/products/01.jpg" alt="Commercial Air Conditioners"
+             onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80'">
+        <div class="product-tag">Popular</div>
+      </div>
+      <div class="product-body">
+        <h3>Commercial Air Conditioners</h3>
+        <p>High-capacity systems for offices, malls, and large commercial spaces. Energy-efficient and powerful.</p>
+        <a href="#contact" class="product-link">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://www.climatetech.in/images/products/02.jpg" alt="Residential Air Conditioners"
+             onerror="this.src='https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80'">
+        <div class="product-tag">Best Seller</div>
+      </div>
+      <div class="product-body">
+        <h3>Residential Air Conditioners</h3>
+        <p>Perfect home cooling solutions. Split ACs, window ACs, and inverter technology for maximum comfort.</p>
+        <a href="#contact" class="product-link">Enquire Now →</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://www.climatetech.in/images/products/03.jpg" alt="Portable Air Conditioners"
+             onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'">
+        <div class="product-tag">New</div>
+      </div>
+      <div class="product-body">
+        <h3>Portable Air Conditioners</h3>
+        <p>Flexible cooling on the go. Easy setup, no permanent installation needed. Ideal for rentals.</p>
+        <a href="#contact" class="product-link">Enquire Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <img src="https://www.climatetech.in/images/about.png" alt="About ACHITECH"
+           onerror="this.src='https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=700&q=80'">
+      <div class="about-stats">
+        <div class="stat-box"><div class="stat-number">500+</div><div class="stat-label">Happy Clients</div></div>
+        <div class="stat-box"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-box"><div class="stat-number">50+</div><div class="stat-label">AC Brands</div></div>
+        <div class="stat-box"><div class="stat-number">24/7</div><div class="stat-label">Support</div></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label" style="text-align:left;">ABOUT US</div>
+      <h2 class="section-title" style="text-align:left; font-size:2rem;">Welcome to ACHITECH</h2>
+      <p>Founded with a passion for delivering premium climate solutions, ACHITECH has become a trusted name in the air conditioning industry.</p>
+      <p>We believe in more than just selling AC units — we're dedicated to helping you achieve the ideal indoor climate, whether at home, in the office, or on the go.</p>
+      <p>We offer an extensive range of top-brand air conditioners, along with expert guidance, to ensure our customers find the perfect fit for their cooling needs.</p>
+      <a href="#contact" class="btn-blue" style="margin-top:0.8rem;">View More</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">SERVICES</div>
+  <h2 class="section-title">What We Offer</h2>
+  <p class="section-sub">Comprehensive air conditioning services from purchase guidance to installation and ongoing maintenance.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://www.climatetech.in/images/blogs/1.png" alt="Marketplace Insights"
+             onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80'">
+      </div>
+      <div class="service-body">
+        <h3>Marketplace Insights</h3>
+        <p>Expert advice on the latest AC models, pricing trends, and best-value products available in the market today.</p>
+        <a href="#contact">Read More →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://www.climatetech.in/images/blogs/2.png" alt="AC Care Guidance"
+             onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80'">
+      </div>
+      <div class="service-body">
+        <h3>AC Care Guidance</h3>
+        <p>Professional maintenance tips and scheduled service plans to keep your air conditioner running at peak efficiency.</p>
+        <a href="#contact">Read More →</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://www.climatetech.in/images/blogs/3.png" alt="Precision Installation"
+             onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'">
+      </div>
+      <div class="service-body">
+        <h3>Precision Installation</h3>
+        <p>Skilled technicians ensure perfect AC installation with safety standards and optimal airflow configuration.</p>
+        <a href="#contact">Read More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE STRIP -->
+<div class="quote-strip">
+  <blockquote>At ACHITECH, we don't just provide air conditioning solutions; we build <strong>lasting relationships</strong> based on trust, quality, and expertise. Let us be your partner in achieving <strong>perfect indoor comfort.</strong></blockquote>
+  <a href="#contact" class="btn-blue">Contact Us</a>
+</div>
+
+<!-- COMMITMENT -->
+<section class="commitment" id="commitment">
+  <div class="section-label">OUR COMMITMENT</div>
+  <h2 class="section-title">Why Choose ACHITECH?</h2>
+  <p class="section-sub">We go beyond selling ACs — we deliver comfort, trust, and long-term peace of mind.</p>
+  <div class="commitment-grid">
+    <div class="commit-item">
+      <div class="commit-icon-wrap">
+        <img src="https://www.climatetech.in/images/quality.png" alt="Quality"
+             onerror="this.outerHTML='<span style=\'font-size:2.2rem;\'>🏆</span>'">
+      </div>
+      <h3>Quality</h3>
+      <p>We offer only the best products from reputable brands known for durability, efficiency, and performance.</p>
+    </div>
+    <div class="commit-item">
+      <div class="commit-icon-wrap">
+        <img src="https://www.climatetech.in/images/satisfaction.png" alt="Customer Satisfaction"
+             onerror="this.outerHTML='<span style=\'font-size:2.2rem;\'>😊</span>'">
+      </div>
+      <h3>Customer Satisfaction</h3>
+      <p>Your satisfaction is our highest reward. We listen to your preferences and strive to offer personalized service.</p>
+    </div>
+    <div class="commit-item">
+      <div class="commit-icon-wrap">
+        <img src="https://www.climatetech.in/images/innovation.png" alt="Excellence"
+             onerror="this.outerHTML='<span style=\'font-size:2.2rem;\'>⭐</span>'">
+      </div>
+      <h3>Excellence</h3>
+      <p>Our skilled technicians deliver precise installation and reliable AC care, ensuring long-lasting performance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT US -->
+<section class="contact-section" id="contact">
+  <div class="section-label">CONTACT US</div>
+  <h2 class="section-title">Get In Touch With Us</h2>
+  <p class="section-sub">We're here to help! Reach out for a free consultation, product enquiry, or service booking.</p>
+  <div class="contact-grid">
+
+    <!-- Left: Contact Info -->
+    <div class="contact-card">
+      <h3>Our Contact Details</h3>
+
+      <div class="contact-info-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-info-label">Phone</div>
+          <a href="tel:+919449148548" class="contact-info-val">+91 9449148548</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <a href="mailto:achitech.blr@gmail.com" class="contact-info-val">achitech.blr@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-info-label">WhatsApp</div>
+          <a href="https://api.whatsapp.com/send?phone=919449148548" class="contact-info-val" target="_blank">Chat with us</a>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-info-label">Address</div>
+          <div class="contact-info-addr">Shop No: 2, GR Home's, 207, 4th Cross Rd,<br>KSRP Quarters, Opp Rayasandra,<br>Bengaluru, Karnataka 560100</div>
+        </div>
+      </div>
+
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.1!2d77.6408!3d12.8731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDUyJzIzLjIiTiA3N8KwMzgnMjYuOSJF!5e0!3m2!1sen!2sin!4v1234567890"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div class="contact-card">
+      <h3>Send Us a Message</h3>
+      <div class="contact-form">
+        <input type="text" placeholder="Your Full Name" />
+        <input type="tel" placeholder="Your Phone Number" />
+        <input type="email" placeholder="Your Email Address" />
+        <textarea placeholder="Tell us about your requirement (AC type, room size, location...)"></textarea>
+        <button onclick="alert('Thank you! We will contact you soon.')">Send Message →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+<svg width="160" height="46" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="3" width="40" height="40" rx="9" fill="white"/>
+  <text x="20" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#111">A</text>
+  <text x="50" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="white" letter-spacing="2.5">ACHI</text>
+  <line x1="50" y1="25" x2="156" y2="25" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+  <text x="50" y="38" font-family="Arial,sans-serif" font-size="11" font-weight="400" fill="rgba(255,255,255,0.75)" letter-spacing="4">TECH</text>
+</svg>
+      </div>
+      <p>Your one-stop solution for all air conditioning needs. Premium products, expert installation, and reliable service.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919449148548">+91 9449148548</a></li>
+        <li><a href="mailto:achitech.blr@gmail.com">achitech.blr@gmail.com</a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=919449148548">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2024 ACHITECH. All Rights Reserved.</div>
+</footer>
+
+<script>
+  let current = 0;
+  const total = 2;
+  const slidesEl = document.getElementById('slides');
+  const dots = document.querySelectorAll('.dot');
+  function goToSlide(n) {
+    current = n;
+    slidesEl.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  function changeSlide(dir) { goToSlide((current + dir + total) % total); }
+  setInterval(() => changeSlide(1), 5000);
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
